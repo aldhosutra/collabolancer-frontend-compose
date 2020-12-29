@@ -5,6 +5,11 @@ services:
     ports:
       - "80:80"
     restart: on-failure
+    depends_on:
+      - lisk-explorer
+      - lisk-faucet
+    networks:
+      - lisk-collabolancer
     environment:
       - REACT_APP_NODE=${COLLABOLANCER_NODE_URL}
       - REACT_APP_EXTENDED_API=${COLLABOLANCER_EXTENDED_API_URL}
@@ -12,13 +17,16 @@ services:
       - REACT_APP_FAUCET_URL=${COLLABOLANCER_FAUCET_URL}
       - REACT_APP_NETWORK_HASH=${COLLABOLANCER_NETHASH}
       - REACT_APP_NETWORK_NAME=${COLLABOLANCER_NETWORK_NAME}
+    volumes:
+      - ./collabolancer-client/letsencrypt:/etc/letsencrypt
+      - ./collabolancer-client/nginx/conf.d:/etc/nginx/conf.d
 
   lisk-explorer:
     image: lisk/explorer:2.2.7
     depends_on:
       - collabolancer-cache
-    ports:
-      - "6040:6040"
+    expose:
+      - 6040
     networks:
       - lisk-collabolancer
     restart: on-failure
@@ -37,8 +45,8 @@ services:
       - ./lisk-faucet/api/lisk.js:/home/lisk/lisk-faucet/api/lisk.js
     depends_on:
       - collabolancer-cache
-    ports:
-      - "3200:3200"
+    expose:
+      - 3200
     networks:
       - lisk-collabolancer
     restart: on-failure
