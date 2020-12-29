@@ -4,6 +4,7 @@ services:
     build: ./collabolancer-client/ci
     ports:
       - "80:80"
+      - "443:443"
     restart: on-failure
     depends_on:
       - lisk-explorer
