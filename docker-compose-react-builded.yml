@@ -26,8 +26,8 @@ services:
     image: lisk/explorer:2.2.7
     depends_on:
       - collabolancer-cache
-    expose:
-      - 6040
+    ports:
+      - "6040:6040"
     networks:
       - lisk-collabolancer
     restart: on-failure
