@@ -1,0 +1,9 @@
+*.css   diff
+*.html  diff
+*.js    diff
+*.json  diff
+*.less  diff
+*.md    diff
+*.svg   diff
+*.yml   diff
+*.env   diff
