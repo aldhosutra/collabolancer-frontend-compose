@@ -35,7 +35,7 @@ services:
       - ./lisk-explorer/config.global.js:/home/lisk/lisk-explorer/config.global.js
       - ./lisk-explorer/config.js:/home/lisk/lisk-explorer/config.js
     environment:
-      - LISK_URL_HTTP=${COLLABOLANCER_NODE_URL}
+      - LISK_URL_HTTP=${COLLABOLANCER_NODE_API_URL}
       - LISK_URL_WS=${COLLABOLANCER_NODE_WS}
       - ENABLE_MARKET_FEATURES=false
       - REDIS_HOST=collabolancer-cache
