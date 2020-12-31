@@ -23,7 +23,7 @@ services:
       - ./collabolancer-client/nginx/conf.d:/etc/nginx/conf.d
 
   lisk-explorer:
-    image: lisk/explorer:2.2.7
+    image: lisk/explorer:2.3.0-rc.1
     depends_on:
       - collabolancer-cache
     ports:
@@ -35,10 +35,11 @@ services:
       - ./lisk-explorer/config.global.js:/home/lisk/lisk-explorer/config.global.js
       - ./lisk-explorer/config.js:/home/lisk/lisk-explorer/config.js
     environment:
-      - LISK_HOST=${COLLABOLANCER_NODE_HOST}
-      - LISK_PORT=${COLLABOLANCER_NODE_PORT}
+      - LISK_URL_HTTP=${COLLABOLANCER_NODE_URL}
+      - LISK_URL_WS=${COLLABOLANCER_NODE_WS}
+      - ENABLE_MARKET_FEATURES=false
       - REDIS_HOST=collabolancer-cache
-      - FREEGEOIP_HOST=geoip.lisk.io
+      - FREEGEOIP_URL=https://geoip.lisk.io
 
   lisk-faucet:
     image: lisk/faucet:3.0.0-beta.0
@@ -73,7 +74,7 @@ services:
     restart: on-failure
 
   explorer-cache-candles:
-    image: lisk/explorer:2.2.7
+    image: lisk/explorer:2.3.0-rc.1
     depends_on:
       - collabolancer-cache
     networks:

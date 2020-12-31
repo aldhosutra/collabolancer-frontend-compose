@@ -19,10 +19,10 @@ config.freegeoip = {};
 config.redis = {};
 config.log = {};
 config.exchangeRates = {
-  exchanges: {
-    LSK: {},
-    BTC: {},
-  },
+	exchanges: {
+		LSK: {},
+		BTC: {},
+	},
 };
 config.marketWatcher = { exchanges: {}, candles: { poloniex: {} }, orders: {} };
 config.cacheDelegateAddress = {};
